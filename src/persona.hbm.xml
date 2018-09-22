@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="entidades.Persona" table="persona">
+
+        <id name="OID" type="string">
+            <column name="OIDPersona"/>
+            <generator class="uuid2"/>
+        </id>
+
+        <property name="dni" type="long">
+            <column name="dni"/>
+        </property>
+
+        <property name="fechaNacimiento" type="date">
+            <column name="fechaNacimiento"/>
+        </property>
+
+        <property name="nombre" type="string">
+            <column name="nombre"/>
+        </property>
+
+        <property name="tipo" type="string">
+            <column name="tipo"/>
+        </property>
+
+        <joined-subclass name="entidades.Cliente" table="cliente">
+
+            <key column="OIDCliente"/>
+
+            <property name="numero" type="integer">
+                <column name="numero"/>
+            </property>
+            
+        </joined-subclass>
+
+        <joined-subclass name="entidades.Empleado" table="empleado">
+
+            <key column="OIDEmpleado"/>
+
+            <property name="legajo" type="long">
+                <column name="legajo"/>
+            </property>
+
+        </joined-subclass>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="entidades.Alumno" table="alumno">
+
+        <id name="OID" type="string">
+            <column name="OIDAlumno"/>
+            <generator class="uuid2"/>
+        </id>
+
+        <property name="nombre" type="string">
+            <column name="nombre"/>
+        </property>
+
+        <property name="apellido" type="string">
+            <column name="apellido"/>
+        </property>
+
+        <bag name="materiaList" table="alumnomateria" cascade="none">
+            <key column="OIDAlumno" not-null="true"/>
+            <many-to-many class="entidades.Materia" column="OIDMateria"/>
+        </bag>
+
+    </class>
+
+</hibernate-mapping>
