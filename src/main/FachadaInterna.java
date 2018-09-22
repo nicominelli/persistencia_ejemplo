@@ -55,11 +55,8 @@ public class FachadaInterna {
                         cr.add(Restrictions.conjunction(Restrictions.ne(atributo, valor)));
                         break;
                     case "contains":
-                        //Todos las colecciones deben empezar de la siguiente manera: claseColeccionList
-                        //Generamos el nombre de esa colección a partir del atributo
-                        String list = String.valueOf(atributo.charAt(0))
-                                .toLowerCase() + atributo.substring(1); //materiaList, detalleReposicionList
-                        String property = String.format("%s.%s", claseABuscar.toLowerCase(), list);
+                        // atributo tiene que se igual al nombre de la lista contenedora
+                        String property = String.format("%s.%s", claseABuscar.toLowerCase(), atributo);
                         cr.setFetchMode(property, FetchMode.JOIN);
                         cr.createAlias(property, "lista");
                         cr.setFetchMode("lista.OID" + claseABuscar, FetchMode.JOIN);

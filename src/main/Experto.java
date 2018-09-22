@@ -17,7 +17,7 @@ public class Experto {
      * Se recomienda llamar a crearElementos() para que se creen todos los objetos necesarios para los siguientes
      * metodos.
      *
-     * Cualquier cosa, consultarme a: minellinh@gmail.com
+     * Cualquier cosa, consultar a: minellinh@gmail.com
      */
     public void Metodo() {
         // Reemplazar la siguiente linea con el metodo que se desea probar.
@@ -38,8 +38,6 @@ public class Experto {
         repo.setNumero(1);
         repo.setEstado(creada);
 
-        FachadaPersistencia.getInstance().guardar(repo);
-
         Articulo articulo = new Articulo();
         articulo.setCodigo(1);
         articulo.setNombre("articulo");
@@ -50,9 +48,13 @@ public class Experto {
         detalle.setArticulo(articulo);
         detalle.setCantidad(1);
 
-        repo.addDetalleReposicionList(detalle);
+        DetalleReposicion detalle2 = new DetalleReposicion();
+        detalle2.setArticulo(articulo);
+        detalle2.setCantidad(2);
 
-        FachadaPersistencia.getInstance().guardar(detalle);
+        repo.addDetalleReposicionList(detalle);
+        repo.addDetalleReposicionList(detalle2);
+
         FachadaPersistencia.getInstance().guardar(repo);
     }
 
@@ -183,6 +185,8 @@ public class Experto {
         dto.setOperacion("=");
         dto.setValor(articulo);
 
+        criterioList.add(dto);
+
         DetalleReposicion detalleReposicion = (DetalleReposicion) FachadaPersistencia.getInstance().buscar("DetalleReposicion", criterioList).get(0);
 
         // Busco la reposicion que contiene al detalle
@@ -192,6 +196,8 @@ public class Experto {
         dto.setAtributo("detalleReposicionList");
         dto.setOperacion("contains");
         dto.setValor(detalleReposicion);
+
+        criterioList.add(dto);
 
         Reposicion reposicion = (Reposicion) FachadaPersistencia.getInstance().buscar("Reposicion", criterioList).get(0);
 

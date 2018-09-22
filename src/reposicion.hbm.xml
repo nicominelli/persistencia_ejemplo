@@ -20,7 +20,7 @@
 
         <many-to-one name="estado" class="entidades.Estado" column="OIDEstado" not-null="true"/>
 
-        <bag name="detalleReposicionList" table="detallereposicion" cascade="none" inverse="false">
+        <bag name="detalleReposicionList" table="detallereposicion" cascade="save-update" inverse="false">
             <key column="OIDReposicion" not-null="true"/>
             <one-to-many class="entidades.DetalleReposicion"/>
         </bag>
